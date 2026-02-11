@@ -1,5 +1,14 @@
 import yfinance as yf
 import pandas as pd
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer # Model for Analyzing Sentiment
+
+analyzer = SentimentIntensityAnalyzer()
+
+# function to analyze sentiment and return score compound
+def get_sentiment(text):
+   if not text:
+      return 0
+   return analyzer.polarity_scores(text)['compound']
 
 # function to fetch data
 def get_ticker_data(symbol, interval, period):
@@ -18,13 +27,17 @@ def get_ticker_data(symbol, interval, period):
           all_prices.append(intraday_data)
 
         # fetch news
-        search_new = yf.Search(symbols, max_results=5)
+        search_new = yf.Search(symbols, max_results=10)
         for item in search_new.news: 
+            title = item.get('title')
+            score = get_sentiment(title)
+
             all_new.append({
                'symbol' : symbols,
-               'title' : item.get('title'),
+               'title' : title,
                'link' : item.get('link'),
                'publisher' : item.get('publisher'),
+               'sentimentScore': score,
                'publishedAt': pd.to_datetime(item.get('providerPublishTime'), unit='s')
             })
 
