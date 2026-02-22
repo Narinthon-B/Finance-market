@@ -31,5 +31,5 @@ jobs:
       with:
         name: stock-sentiment-results # folder name
         path: |
-          stock_prices_output.csv
-          stock_news_output.csv
+          stock_prices.csv
+          stock_news.csv
