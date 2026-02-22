@@ -76,7 +76,8 @@ def save_to_database(df_prices, df_news):
       df_prices.to_csv(file_prices, index=False)
       df_news.to_csv(file_news, index=False)
       print(f"Successfully accumulated data. Total prices: {len(df_prices)}, Total news: {len(df_news)}")
-
+      return
+   
    # check if data already exists
    try:
       existing_prices = pd.read_sql("SELECT \"Symbol\", \"Datetime\" FROM stock_prices", engine)
