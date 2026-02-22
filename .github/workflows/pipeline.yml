@@ -31,8 +31,8 @@ jobs:
       with:
         name: stock-sentiment-results # folder name
         path: |
-          stock_prices.csv
-          stock_news.csv
+          files/stock_prices.csv
+          files/stock_news.csv
 
     - name: Commit and Push changes
       run: |
