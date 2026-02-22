@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+import os
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer # Model for Analyzing Sentiment
 from sqlalchemy import create_engine
 
@@ -55,7 +56,14 @@ db_url = 'postgresql://postgres:mysecretpassword@localhost:5432/postgres'
 engine = create_engine(db_url)
 
 def save_to_database(df_prices, df_news):
-   print("checking database")
+   is_github_action = os.getenv('GITHUB_ACTIONS') == 'true'
+
+   if is_github_action:
+      print("Running in GitHub Actions: Saving data to CSV")
+      df_prices.to_csv('stock_prices.csv', index=False)
+      df_news.to_csv('stock_news.csv', index=False)
+      print("Saved data to CSV")
+      return
 
    # check if data already exists
    try:
@@ -90,6 +98,7 @@ print(f"Total news: {news}")
 
 save_to_database(prices, news)
 
-print("\nTesting Data Read")
-test_df = pd.read_sql("SELECT * FROM stock_news LIMIT 5", engine)
-print(test_df)
+if os.getenv('GITHUB_ACTIONS') != 'true':
+   print("\nTesting Data Read")
+   test_df = pd.read_sql("SELECT * FROM stock_news LIMIT 5", engine)
+   print(test_df)
