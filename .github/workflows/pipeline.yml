@@ -33,3 +33,11 @@ jobs:
         path: |
           stock_prices.csv
           stock_news.csv
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add stock_prices.csv stock_news.csv
+        git commit -m "Auto-update financial data [skip ci]" || echo "No changes to commit"
+        git push
