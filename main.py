@@ -65,7 +65,7 @@ def save_to_database(df_prices, df_news):
       if os.path.exists(file_prices):
          old_prices = pd.read_csv(file_prices)
          df_prices = pd.concat([old_prices, df_prices])
-         df.prices = df_prices.drop_duplicates(subset=['Symbol', 'Datetime'], keep='last')
+         df_prices = df_prices.drop_duplicates(subset=['Symbol', 'Datetime'], keep='last')
       
       file_news = 'files/stock_news.csv'
       if os.path.exists(file_news):
