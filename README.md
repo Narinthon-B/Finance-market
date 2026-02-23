@@ -29,3 +29,6 @@
 4.  **Data Visualization (การสรุปผล):**
     
     -   ประมวลผลข้อมูลรายชั่วโมงและสร้างกราฟ เพื่อเปรียบเทียบความสัมพันธ์ระหว่างราคา (เส้นสีน้ำเงิน) และความรู้สึกของข่าว (แท่งสีส้ม)
+<img width="1400" height="700" alt="SCB BK" src="https://github.com/user-attachments/assets/fde17acc-560e-40a5-acf4-b4b379dbe2bd" />
+<img width="1400" height="700" alt="BBL BK" src="https://github.com/user-attachments/assets/6f1e37e0-9b7b-40d0-ad29-f9ff6eee5a94" />
+<img width="1400" height="700" alt="KTB BK" src="https://github.com/user-attachments/assets/3b71e29e-c65c-4f21-8cf7-a69bb0c250e1" />
